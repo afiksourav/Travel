@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<section class="home" id="home">
+
+    <div class="content">
+        <h3>adventure is worthwhile</h3>
+        <p>dicover new places with us, adventure awaits</p>
+        <a href="#" class="btn">discover more</a>
+    </div>
+
+    <div class="controls">
+        <span class="vid-btn active" data-src="{% static 'images/vid-1.mp4' %}" ></span>
+      
+        <span class="vid-btn" data-src="{% static 'images/vid-2.mp4' %}"></span>
+        <span class="vid-btn" data-src="{% static 'images/vid-3.mp4' %}"></span>
+        <span class="vid-btn" data-src="{% static 'images/vid-4.mp4' %}"></span>
+        <span class="vid-btn" data-src="{% static 'images/vid-5.mp4' %}"></span>
+    </div>
+
+    <div class="video-container">
+        <video src="{% static 'images/vid-1.mp4' %}" id="video-slider" loop autoplay muted></video>
+    </div>
+
+</section>
+
+
+
+<!-- packages section starts  -->
+
+<section class="packages" id="packages">
+
+    <h1 class="heading">
+        <span>p</span>
+        <span>L</span>
+        <span>A</span>
+        <span>C</span>
+        <span>E</span>
+        <span>S</span>
+  
+    </h1>
+
+    
+    <div class="box-container">
+        {% for place in tour_place %}
+
+        <div class="box">
+            <img src="{{place.image.url}}" alt="" width="300" height="364">
+            <!-- <img  src="{{ tour.image.url }}" alt="" width="300" height="364"> -->
+            <div class="content">
+                <h3> <i class="fas fa-map-marker-alt"></i> {{place.place_name}} </h3>
+                <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, nam!</p> -->
+                <!-- <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div> -->
+                <!-- <div class="price"> $90.00 <span>$120.00</span> </div> -->
+                <a href="{% url 'see_place' place.pk %}" class="btn"> See places </a>
+            </div>
+        </div> 
+        {% endfor %}   
+    </div>
+    
+</section>
+
+<!-- packages section ends -->
+
+<!-- services section starts  -->
+
+<section class="services" id="services">
+
+    <h1 class="heading">
+        <span>s</span>
+        <span>e</span>
+        <span>r</span>
+        <span>v</span>
+        <span>i</span>
+        <span>c</span>
+        <span>e</span>
+        <span>s</span>
+    </h1>
+
+    <div class="box-container">
+      
+        <div class="box">
+            <i class="fas fa-hotel"></i>
+            <h3>affordable hotels</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore commodi earum, quis voluptate exercitationem ut minima itaque iusto ipsum corrupti!</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-utensils"></i>
+            <h3>food and drinks</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore commodi earum, quis voluptate exercitationem ut minima itaque iusto ipsum corrupti!</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-bullhorn"></i>
+            <h3>safty guide</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore commodi earum, quis voluptate exercitationem ut minima itaque iusto ipsum corrupti!</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-globe-asia"></i>
+            <h3>around the world</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore commodi earum, quis voluptate exercitationem ut minima itaque iusto ipsum corrupti!</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-plane"></i>
+            <h3>fastest travel</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore commodi earum, quis voluptate exercitationem ut minima itaque iusto ipsum corrupti!</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-hiking"></i>
+            <h3>adventures</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore commodi earum, quis voluptate exercitationem ut minima itaque iusto ipsum corrupti!</p>
+        </div>
+
+    </div>
+
+
+</section>c
+<!-- review section ends -->
+
+
+
+<!-- contact section ends -->
+
+<!-- brand section  -->
+<section class="brand-container">
+
+    <div class="swiper-container brand-slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="{% static 'images/1.jpg' %}" alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'images/2.jpg' %}" alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'images/3.jpg' %}" alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'images/4.jpg' %}" alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'images/5.jpg' %}" alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'images/6.jpg' %}" alt=""></div>
+        </div>
+    </div>
+
+</section>
+
+<!-- footer section  -->
+
+{% endblock content %}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/packages_place.css' %}">
+
+<script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+
+
+
+  <section class="dark">
+	<div class="container py-4">
+		<h1 class="h1 text-center" id="pageHeaderTitle">My Cards Dark</h1>
+    {% for i in package_item %}
+		<article class="postcard dark blue">
+     
+			<a class="postcard__img_link" href="#">
+				<img class="postcard__img" src="{{i.image.url}}" alt="Image Title" />
+			</a>
+			<div class="postcard__text">
+				<h1 class="postcard__title blue"><a href="#">{{i.place_name}}</a></h1>
+				<div class="postcard__subtitle small">
+				
+						<i class="fas fa-calendar-alt mr-2"></i>{{i.duration}}
+            <h4>Member : {{i.member}}</h4>
+            <h4>{{i.price}} tk</h4>
+					
+				</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">{{i.description}}</div>
+       
+			</div>
+      
+      
+		</article>
+  
+    <a href="{%url 'package_details_place' i.pk %}"><button  class="btn">See Details</button></a>
+    {% endfor %}
+
+<!-- delete section -->
+	</div>
+</section>
+
+{% endblock content %}
+
+ 

@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<!-- book section starts  -->
+
+<section class="book" id="book" style="padding: 7%;">
+    {% if user_submitted %}
+    <h1 class="heading">
+        <span>b</span>
+        <span>o</span>
+        <span>o</span>
+        <span>k</span>
+        <span class="space"></span>
+        
+        <span>E</span>
+        <span>d</span>
+        <span>i</span>
+        <span>t</span>
+    </h1>
+
+    {% else %}
+    <h1 class="heading">
+        <span>b</span>
+        <span>o</span>
+        <span>o</span>
+        <span>k</span>
+        <span class="space"></span>
+        <span>n</span>
+        <span>o</span>
+        <span>w</span>
+    </h1>
+    {% endif %}
+
+
+
+    <div class="row">
+
+
+         
+
+
+        <div class="image">
+            <img src="{% static 'images/book-img.svg' %}" alt="">
+        </div>
+        {% if user_submitted %}
+        <form method="POST">
+            {% csrf_token %}
+            <div class="inputBox">
+                <h3>where to</h3>
+                  <input type="text" value="{{exists_data.place_name}}" name="place_name" readonly>
+            </div>
+            <div class="inputBox">
+                <h3>how many</h3>
+                <input type="number" value="{{exists_data.guests_number}}" placeholder="number of guests" name="guests_number">
+            </div>
+            <div class="inputBox">
+                <h3>Check-In</h3>
+                <input type="date" value="{{exists_data.check_in|date:"Y-m-d"}}" name="check_in">
+            </div>
+            <div class="inputBox">
+                <h3>Check-Out</h3>
+                <input type="date" value="{{exists_data.check_out|date:"Y-m-d"}}" name="check_out">
+            </div>
+            <input type="submit" class="btn" value="book now">
+            {% if messages %}
+        
+                {% for message in messages %}
+                 <h1>{{ message }} </h1>
+                {% endfor %}
+         
+        {% endif %}
+        </form>
+
+        {% else %}
+
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="inputBox">
+                <h3>where to</h3>
+                <select name="place_name">
+                    {% for place in all_specific_palces %}
+                        <option value="{{place.id}}">{{place}}</option>
+                    {% endfor %}
+                  </select>
+            </div>
+            <div class="inputBox">
+                <h3>how many</h3>
+                <input type="number" placeholder="number of guests" name="guests_number">
+            </div>
+            <div class="inputBox">
+                <h3>Check-In</h3>
+                <input type="date" name="check_in">
+            </div>
+            <div class="inputBox">
+                <h3>Check-Out</h3>
+                <input type="date" name="check_out">
+            </div>
+            <input type="submit" class="btn" value="book now">
+            {% if messages %}
+        
+                {% for message in messages %}
+                 <h1>{{ message }} </h1>
+                {% endfor %}
+         
+        {% endif %}
+        </form>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+<!-- book section ends -->
+
+{% endblock content %}

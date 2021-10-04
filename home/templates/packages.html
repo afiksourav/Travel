@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/packages.css' %}">
+</head>
+<body>
+
+<section class="feature" id="feature" style="padding: 10%;">
+<h1 class="heading">
+       
+    <span>P</span>
+    <span>A</span>
+    <span>C</span>
+    <span>K</span>
+    <span>A</span>
+    <span>G</span>
+    <span>E</span>
+    <span>S</span>
+    
+</h1>
+
+<div class="card-container">
+    {% for i in package%}
+    <div class="card">
+       
+        <img src="{{i.image.url}}" alt="">
+        <div class="content">
+        <h3 class="title">{{i.package_name|cut:"_"}}</h3>
+        <a href="{% url 'package_place' i.pk %}"><button name="book" class="btn">Details</button></a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</section>
+</body>
+
+{% endblock content %}

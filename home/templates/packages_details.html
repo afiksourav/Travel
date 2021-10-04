@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+{% load static %}
+{% load mathfilters %}
+{% block content %}
+<style>
+
+    body {
+        font-size: 1.2rem;
+      } 
+      .small-container {
+        width: 95%;
+        margin: 0 auto;
+      }
+      
+      .main-font-family {
+        font-family: 'Lobster Two', cursive;
+      }
+      
+      .noto-font-family {
+        font-family: 'Noto Serif', serif;
+      }
+      
+      .lobster-font-family {
+        font-family: 'Lobster', cursive;;
+      }
+      
+      .roboto-font-family {
+        font-family: 'Roboto', sans-serif;
+      }
+      /* about */
+      
+      .about {
+        padding-top: 70px;
+        background-image: url(../imgs/bg.jpg);
+        background-size: 100% 90%;
+        background-repeat: no-repeat;
+        margin-bottom: 100px;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .about h2 {
+        margin-bottom: 50px
+      }
+      
+      .about h2 + img {
+        position: absolute;
+        height: 200px;
+        width: 200px;
+        top: -20px;
+        left: -30px;
+        z-index: -1
+      }
+      
+      .about h4 {
+        color: #cc0000;
+        margin-bottom: 25px
+      }
+      
+      .about p {
+        line-height: 1.9;
+        margin-bottom: 70px;
+      }
+      
+      .about button {
+        background-color: #ffcc33;
+        border: none;
+        transform: skew(-25deg);
+      }
+      
+      .about button a {
+        color: #000;
+        padding: 10px 50px;
+        display: block;
+        float: left;
+        transform: skew(25deg);
+      }
+      
+</style>
+
+
+    <body >
+    
+        <div class="about lobster-font-family" style="padding: 10%;">
+            <div class="container">
+                <div class="image">
+                   
+                    </section>
+                    <img style="height:70vh; width:75vw ; vertical-align: middle ; border-style: none" 
+                    src="{% static 'images/g-8.jpg' %}" alt="">
+                </div>
+            </div>
+            <section class="packages" id="packages">
+            
+              <h1 class="heading">
+                  
+                  <span>G</span>
+                  <span>A</span>
+                  <span>L</span>
+                  <span>L</span>
+                  <span>A</span>   
+                  <span>R</span>                                                              
+                  <span>Y</span> 
+                  
+              </h1>
+          </section>
+<section class="packages" id="packages">
+  {% if package_gallery %}
+    <div class="box-container">
+        <div class="box">
+
+            <img src="{{package_gallery.image1.url}}" alt="">
+ 
+        </div>
+        
+        <div class="box">
+
+          <img src="{{package_gallery.image2.url}}" alt="">
+
+      </div><div class="box">
+
+        <img src="{{package_gallery.image3.url}}" alt="">
+
+      </div>
+    </div>
+    {% endif %}
+      <textarea cols="135" rows="30" readonly>{{package_box.description}}</textarea> 
+
+        
+		</div>
+    {% if user.is_authenticated %}
+    <a href="{% url 'booking_package' package_box.pk %}"><button style="margin-left: 43%;" class="btn">Booking Now</button></a>
+    <div>
+      <br> 
+
+      {% if messages %}
+        
+      {% for message in messages %}
+       <h1 style="margin-left: 30%"> {{ message }} </h1>
+      {% endfor %}
+
+{% endif %}
+    </div> 
+    {% else %}
+    <h1 style="margin-left: 22%;">Your are not be Authenticated User! please registrations here </h1>
+    <a href="{% url 'register' %}"> <button style="margin-left: 43%;" class="btn">Registration</button></a> </a>
+	  {% endif %}
+  </div>
+<div class="vc_empty_space"  style="height: 32px" ><span class="vc_empty_space_inner"></span></div>
+
+	<div class="wpb_text_column wpb_content_element ">
+		<div class="wpb_wrapper">
+			
+		</div>
+	</div>
+    </section>           
+            </div> 
+     </body>
+
+{% endblock content %}
+      

@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- Created By CodingLab - www.codinglabweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <!---<title> Responsive Registration Form | CodingLab </title>--->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/reg.css' %}">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="container">
+    <div class="title text-center">Register to TravelWorld</div>
+    <div class="content">
+      <form method="POST">
+        {% csrf_token %}
+        <div class="user-details">
+          <div class="input-box">
+            <span for="full_name" class="details" >Usernmae</span>
+            <input type="text" placeholder="username" name="username" required>
+          </div>
+          <div class="input-box">
+            <span for="full_name" class="details" >Full Name</span>
+            <input type="text" placeholder="Enter your name" name="fullname" required>
+          </div>
+          <div class="input-box">
+            <span for="Email" class="details" >Email</span>
+            <input type="email" placeholder="Enter your email" name="email" required>
+          </div>
+          <div class="input-box">
+            <span for="phone_number" class="details"  >Phone Number</span>
+            <input type="text" placeholder="Enter your number" name="phone_number" required>
+          </div>
+          <div class="input-box">
+            <span for="Confirm_Password" class="details">Country</span>
+            <input type="text" placeholder="Confirm your password" name="country" required>
+          </div>
+          <div class="input-box">
+            <span for="Confirm_Password" class="details">City</span>
+            <input type="text" placeholder="Confirm your password" name="city" required>
+          </div>
+          <div class="input-box">
+            <span for="Password" class="details">Password</span>
+            <input type="text" placeholder="Enter your password" name="password" required>
+          </div>
+          <div class="input-box">
+            <span for="Confirm_Password" class="details">Confirm Password</span>
+            <input type="text" placeholder="Confirm your password" name="password2" required>
+          </div>
+        </div>
+       Already Have An Account ?<a style="color: rgb(255, 255, 255); text-decoration: none !important; font-size:20px" href="{% url 'login' %}"> LOGIN</a>
+        <div class="button">
+          <input type="submit" value="Register">
+          {% if messages %}
+            <ul class="messages text-center">
+                {% for message in messages %}
+                  <li style="color: white;" class="text-white text-center"> {{ message }} </li>
+                {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
+

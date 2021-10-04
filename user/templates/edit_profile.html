@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+     
+    <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+   
+    
+    <div class="panel" style="padding: 10%">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+             
+        <div class="panel-body bio-graph-info">
+            <h1>Bio Graph</h1>
+            <div class="row">
+                <div class="controls">
+                    
+                    <img style="height: 50px" src="{{i.profile_pic.url}}" alt="" > <input type="file" name="image">
+                    
+                    </div>
+                   
+                <div class="bio-row" name>
+                    <p><span>Full name  </span>: <input type="text" name="full_name" value="{{i.full_name}}"></p>
+                    
+                </div>
+               
+                <div class="bio-row">
+                    <p><span>Country </span>: <input type="text" name="country" value="{{i.country}}"></p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Birthday</span>:  <input type="text" name="dob" value="{{i.dob|date:"Y-m-d"}}"></p>
+                    
+                </div>
+                <div class="bio-row">
+                    <p><span>Address </span>: <input type="text" name="address" value="{{i.address}}"></p>
+                    
+                </div>
+                <div class="bio-row">
+                    <p><span>Email </span>:  <input type="email" name="Email" value="{{i.Email}}"></p>
+                    
+                </div>
+                <div class="bio-row">
+                    <p><span>Mobile </span>: <input type="number" name="Phone_Number" value="{{i.Phone_Number}}"></p>
+                    
+                </div>
+                <div class="bio-row">
+                    <p><span>City </span>: <input type="text" name="city" value="{{i.city}}"></p>
+                    
+                </div>
+            </div>
+        </div>
+        <p style="text-align: center;"><button type="submit" class="text-centet btn btn-info">Submit</button></p>
+    </form>
+    </div>
+
+{% endblock content %}

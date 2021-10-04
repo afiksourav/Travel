@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+{% load static %}
+{% load mathfilters %}
+
+
+{% block content %}
+
+<!-- slide section -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/packages.css' %}">
+<section class="home" id="home">
+
+    <div class="content">
+        <h3>{{videos.name}}</h3>
+        <p>{{videos.description_video}}</p> 
+    </div>
+    <div class="video-container">
+        <video src="{{videos.video.url}}" id="video-slider" loop autoplay muted></video>
+    </div>
+
+</section>
+<!-- slide section  end -->
+
+<!-- gallery section starts  -->
+
+<section class="gallery" id="gallery">
+    <h1 class="heading">
+        <span>g</span>
+        <span>a</span>
+        <span>l</span>
+        <span>l</span>
+        <span>e</span>
+        <span>r</span>
+        <span>y</span>
+    </h1>
+    <div class="box-container">
+        {% for photo in gallary_photo %}
+        <div class="box">
+           
+            <img src="{{photo.image1.url}}" alt="">
+            <div class="content">
+                <h3>amazing places</h3>
+                <p>{{photo.description}}</p>
+            </div>
+            
+        </div>
+        <div class="box">
+           
+            <img src="{{photo.image2.url}}" alt="">
+            <div class="content">
+                <h3>amazing places</h3>
+                <p>{{photo.description}}</p>
+            </div>
+            
+        </div>
+        <div class="box">
+           
+            <img src="{{photo.image3.url}}" alt="">
+            <div class="content">
+                <h3>amazing places</h3>
+                <p>{{photo.description}}</p>
+            </div>
+            
+        </div>
+        <div class="box">
+           
+            <img src="{{photo.image4.url}}" alt="">
+            <div class="content">
+                <h3>amazing places</h3>
+                <p>{{photo.description}}</p>
+            </div>
+            
+        </div>
+        <div class="box">
+           
+            <img src="{{photo.image5.url}}" alt="">
+            <div class="content">
+                <h3>{{photo.description}}</h3>
+                <p></p>
+            </div>
+            
+        </div>
+        <div class="box">
+           
+            <img src="{{photo.image6.url}}" alt="">
+            <div class="content">
+                <h3>amazing places</h3>
+                <p>{{photo.description}}</p>
+            </div>
+            
+        </div>
+        {% endfor %}
+    </div>
+
+</section>
+
+<!-- gallery section ends -->
+
+
+
+
+<!-- review sectin -->
+<section class="contact" id="contact" >
+    {% if user.is_authenticated %}
+    <hr>
+    
+    <h1 class="heading" style="margin-left: 18em">
+        <span>R</span>
+        <span>E</span>
+        <span>V</span>
+        <span>I</span>
+        <span>E</span>
+        <span>W</span>
+        {% if user_submitted %}
+            <h3  class="text-cente text-info font-weight-bold" style="margin-left: 37em">Update your review about {{videos.name}}</h3> 
+        {% else %}
+            <h3  class="text-cente text-info font-weight-bold" style="margin-left: 37em">Write a review about {{videos.name}}</h3> 
+        {% endif %}
+    </h1>
+
+    <div class="row">
+
+        <div class="image" style="margin-right: 3em">
+            <img src="{% static 'images/review.jpg' %}" alt="" style="border-radius: 30%">
+        </div>
+        {% if user_submitted %}
+        <form method="POST" class="signin-form">
+            {% csrf_token %}
+            <textarea placeholder="Tell others what you think about {{videos.name}}. Would you recommend it, and why?"
+             name="description" id="" cols="30" rows="10">{{exists_data.description}}</textarea>
+            <div class="inputBox">
+                <h3>Update rating about {{videos.name}}</h3>
+                <select name="rating_place" id="rating_val">
+                <option value="{{exists_data.rating_place}}">{{exists_data.rating_place}}</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                </select>
+            </div>
+            <p class="text-center"><input type="submit" name="Update" class="btn"></p>
+        </form>
+        {% else %}
+            <form method="POST" class="signin-form">
+                {% csrf_token %}
+                <textarea placeholder="Tell others what you think about {{videos.name}}. Would you recommend it, and why?" name="description" id="" cols="30" rows="10"></textarea>
+                <div class="inputBox">
+                    <h3>Give your rating about {{videos.name}}</h3>
+                    <select name="rating_place" id="rating_val">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    </select>
+                </div>
+                <p class="text-center"><input type="submit" name="submit" class="btn"></p>
+            </form>
+        {% endif %}
+ 
+    </div>
+    {% endif %}
+</section>
+
+
+<!-- review section -->
+<section class="feature" id="feature" style="padding: 10%;">
+<div class="card-container">
+    {% for review in rating %}
+    <div class="card">
+        <img src="{{ review.user_profile.profile_pic.url }}" alt="">
+        <h3>{{review.name}}</h3>
+        <p>{{review.description}}</p>
+        <div class="stars">
+            {% with ''|center:review.rating_place as emon %}
+                {% for _ in emon %}
+                    <i class="fas fa-star"></i>
+                {% endfor %}
+            {% endwith %}
+
+            {% with rest=5|sub:review.rating_place %}     
+                {% with ''|center:rest as range %}
+                    {% for _ in range %}
+                        <i class="far fa-star"></i>
+                    {% endfor %}
+                {% endwith %}
+            {% endwith %}
+        </div>
+        <div class="content">
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</section>
+
+
+
+<!-- contact section ends -->
+
+
+{% endblock content %}

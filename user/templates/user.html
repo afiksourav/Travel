@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<body>
+     
+    <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+   
+    <div class="container bootstrap snippets bootdey">
+    <div class="row" style="padding: 6%">
+      <div class="profile-nav col-md-3">
+          <div class="panel">
+              <div class="user-heading round">
+                  <a href="#">
+                      <img src="{{i.profile_pic.url}}" alt="">
+                  </a>
+                  <h1>{{i.user}}</h1>
+                  <p>{{i.Email}}</p>
+              </div>
+    
+              <ul class="nav nav-pills nav-stacked">
+                  <li class="active"><a href="#"> <i class="fa fa-user"></i> Profile</a></li>
+                  <li><a href="{% url 'user_rating' %}"> <i class="fa fa-calendar"></i> Your Rating Activity <span class="label label-warning pull-right r-activity"></span></a></li>
+                  <li><a href="{% url 'booking_status' %}"> <i class="fa fa-calendar"></i> Your Booking Activity <span class="label label-warning pull-right r-activity"></span></a></li>
+                  <li><a href="{% url 'edit_profile' %}"> <i class="fa fa-edit"></i> Edit profile</a></li>
+              </ul>
+          </div>
+      </div>
+      <div class="profile-info col-md-9">
+          <div class="panel">
+             
+          </div>
+          <div class="panel">
+             
+              <div class="panel-body bio-graph-info">
+                  <h1>Bio Graph</h1>
+                  <div class="row">
+                      <div class="bio-row">
+                          <p><span>Full name  </span>: {{i.full_name}}</p>
+                      </div>
+                     
+                      <div class="bio-row">
+                          <p><span>Country </span>:  {{i.country}}</p>
+                      </div>
+                      <div class="bio-row">
+                          <p><span>Birthday</span>:  {{i.dob}}</p>
+                      </div>
+                      <div class="bio-row">
+                          <p><span>Address </span>: {{i.address}}</p>
+                      </div>
+                      <div class="bio-row">
+                          <p><span>Email </span>:  {{i.Email}}</p>
+                      </div>
+                      <div class="bio-row">
+                          <p><span>Mobile </span>:  {{i.Phone_Number}}</p>
+                      </div>
+                      <div class="bio-row">
+                          <p><span>City </span>:  {{i.city}}</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div>
+              
+          </div>
+      </div>
+    </div>
+    </div>
+
+{% endblock content %}

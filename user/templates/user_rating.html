@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+{% load mathfilters %}
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/user_rating.css' %}">
+    <section class="wrapper">
+        <div class="container-fostrap">
+            <div>
+                <h1 class="heading">
+                    Yours Reviews
+                </h1>
+            </div>
+            <div class="content">
+                
+                <div class="container"> 
+                    <div class="row">
+                        
+                        <div class="col-xs-12 col-sm-4">
+                            {% for i in user_review %}
+                            <div class="card">
+                                
+                                <a class="img-card" href="">
+                                <img src="{{i.district_place.image.url}}" />
+                              </a>
+                                <div class="card-content">
+                                    <h4 class="card-title">
+                                        <a href=""> {{i.description}}
+                                      </a>
+                                    </h4>
+                                    <div class="stars">
+                                        {% with ''|center:i.rating_place as emon %}
+                                            {% for _ in emon %}
+                                                <i class="fas fa-star"></i>
+                                            {% endfor %}
+                                        {% endwith %}
+                        
+                                        {% with rest=5|sub:i.rating_place %}     
+                                            {% with ''|center:rest as range %}
+                                                {% for _ in range %}
+                                                    <i class="far fa-star"></i>
+                                                {% endfor %}
+                                            {% endwith %}
+                                        {% endwith %}
+                                    </div>
+                                </div>
+                                <div class="card-read-more">
+                                    <a href="{% url 'place_details' i.district_place.pk %}" class="btn btn-link btn-block">
+                                        view
+                                    </a>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        {% endfor %}    
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    
+    
+{% endblock content %}
